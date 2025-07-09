@@ -44,7 +44,7 @@ body {
 }
 
 @utility radial-gradient {
-  background: radial-gradient(circle at center, #434343 0%, #000 50%, transparent 100%);
+  background: radial-gradient(circle at 50% 70%, #434343 0%, #000 50%, transparent 100%);
 }
 
 @utility masked-img {
@@ -77,6 +77,10 @@ body {
     ul {
       @apply flex-center lg:gap-12 gap-7;
     }
+  }
+
+  .noise {
+    @apply absolute z-0 inset-0 size-full bg-[url("/images/noise.png")];
   }
 
   #hero {
