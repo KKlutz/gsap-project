@@ -10,13 +10,15 @@ const Navbar = () => {
       scrollTrigger: {
         trigger: "nav",
         start: "bottom top",
+        end: "bottom",
+        scrub: true,
       },
     });
 
     nav_tl.fromTo(
       "nav",
-      { backgroundColor: "black" },
-      { backgroundColor: "#0000004D", backdropFilter: "blur(5px)", duration: 1 }
+      { backgroundColor: "transparent" },
+      { backgroundColor: "#00000066", backdropFilter: "blur(5px)", duration: 1 }
     );
   }, []);
 
