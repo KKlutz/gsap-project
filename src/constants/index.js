@@ -34,7 +34,7 @@ export const cocktailLists = [
   },
 ];
 
-export const mockTailLists = [
+export const mocktailLists = [
   {
     name: "Tropical Bloom",
     country: "US",
