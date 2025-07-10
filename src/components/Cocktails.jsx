@@ -1,9 +1,39 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cocktailLists, mocktailLists } from "../constants/index.js";
+import { SplitText } from "gsap/SplitText";
 
 const Cocktails = () => {
   useGSAP(() => {
+    const ctSplitText = SplitText.create(".ct-list", { type: "lines" });
+    const mtSplitText = SplitText.create(".mt-list", { type: "lines" });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".list",
+          start: "50% 30%",
+          end: "bottom 80%",
+          markers: true,
+        },
+      })
+      .from(".popular h2", { opacity: 0 })
+      .from(ctSplitText.lines, {
+        yPercent: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "expo.out",
+      })
+      .from(".loved h2", { opacity: 0 })
+      .from(mtSplitText.lines, {
+        yPercent: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "expo.out",
+      });
+
     const parallaxTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#cocktails",
@@ -26,7 +56,7 @@ const Cocktails = () => {
       <div className="list">
         <div className="popular">
           <h2>Most popular cocktails:</h2>
-          <ul>
+          <ul className="ct-list">
             {cocktailLists.map(({ name, country, detail, price }) => (
               <li key={name}>
                 <div className="md:me-28">
@@ -42,7 +72,7 @@ const Cocktails = () => {
         </div>
         <div className="loved">
           <h2>Most loved mocktails:</h2>
-          <ul>
+          <ul className="mt-list">
             {mocktailLists.map(({ name, country, detail, price }) => (
               <li key={name}>
                 <div className="me-28">
