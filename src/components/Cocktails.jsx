@@ -1,6 +1,23 @@
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { cocktailLists, mocktailLists } from "../constants/index.js";
 
 const Cocktails = () => {
+  useGSAP(() => {
+    const parallaxTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#cocktails",
+        start: "top 30%",
+        end: "bottom 80%",
+        scrub: true,
+      },
+    });
+
+    parallaxTimeline
+      .from(".ct-left-leaf", { x: -100, y: 100 })
+      .from(".ct-right-leaf", { x: 100, y: 100 });
+  }, []);
+
   return (
     <section id="cocktails" className="noise">
       <img src="/images/cocktail-left-leaf.png" alt="left-leaf" className="ct-left-leaf" />
