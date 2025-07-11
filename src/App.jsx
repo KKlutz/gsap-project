@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Example from "./components/example";
 import Hero from "./components/Hero";
 import Cocktails from "./components/Cocktails";
+import About from "./components/About";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -12,6 +13,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <Cocktails />
+      <About />
       <Example />
       <div className="flex-center h-screen">
         <h1 className="text-3xl font-mono font-normal">GSAP App</h1>
