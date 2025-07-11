@@ -1,38 +1,50 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { cocktailLists, mocktailLists } from "../constants/index.js";
 import { SplitText } from "gsap/SplitText";
+import { useMediaQuery } from "react-responsive";
+import { cocktailLists, mocktailLists } from "../constants/index.js";
 
 const Cocktails = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   useGSAP(() => {
     const ctSplitText = SplitText.create(".ct-list", { type: "lines" });
     const mtSplitText = SplitText.create(".mt-list", { type: "lines" });
 
+    const startListTL = isMobile ? "20% 30%" : "50% 30%";
+    const endListTL = isMobile ? "bottom bottom" : "bottom 80%";
     gsap
       .timeline({
         scrollTrigger: {
           trigger: ".list",
-          start: "50% 30%",
-          end: "bottom 80%",
-          markers: true,
+          start: startListTL,
+          end: endListTL,
+          // markers: true,
         },
       })
-      .from(".popular h2", { opacity: 0 })
-      .from(ctSplitText.lines, {
-        yPercent: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.05,
-        ease: "expo.out",
-      })
-      .from(".loved h2", { opacity: 0 })
-      .from(mtSplitText.lines, {
-        yPercent: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.05,
-        ease: "expo.out",
-      });
+      .from(".popular h2, .loved h2", { opacity: 0 })
+      .from(
+        ctSplitText.lines,
+        {
+          yPercent: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.05,
+          ease: "expo.out",
+        },
+        1
+      ) // Start at the same time
+      .from(
+        mtSplitText.lines,
+        {
+          yPercent: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.05,
+          ease: "expo.out",
+        },
+        1
+      ); // Start at the same time
 
     const parallaxTimeline = gsap.timeline({
       scrollTrigger: {
