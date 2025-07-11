@@ -47,7 +47,7 @@ const Hero = () => {
 
     //TODO: Implement the video animation with Scroll Trigger
     const startTimeline = isMobile ? "top 50%" : "center 60%";
-    const endTimeline = isMobile ? "120% top" : "bottom top";
+    const endTimeline = isMobile ? "100% top" : "bottom top";
 
     // Create video animation timeline
     const videoTimeline = gsap.timeline({
