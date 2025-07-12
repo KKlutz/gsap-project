@@ -115,6 +115,10 @@ body {
         .view-cocktails {
           @apply space-y-5 text-lg lg:max-w-2xs md:max-w-xs w-full text-center md:text-left;
 
+          .subtitle {
+            @apply max-w-[38ch] md:w-full mx-auto;
+          }
+
           p {
             @apply text-center md:text-left;
           }
