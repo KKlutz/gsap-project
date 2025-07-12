@@ -45,7 +45,7 @@ const Hero = () => {
       .to(".left-leaf", { y: -200 }, 0)
       .to(".right-leaf", { y: 100 }, 0);
 
-    //TODO: Implement the video animation with Scroll Trigger
+    // Implement the video animation with Scroll Trigger
     const startTimeline = isMobile ? "top 50%" : "center 60%";
     const endTimeline = isMobile ? "100% top" : "bottom top";
 

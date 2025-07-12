@@ -11,7 +11,7 @@ const Cocktails = () => {
     const ctSplitText = SplitText.create(".ct-list", { type: "lines" });
     const mtSplitText = SplitText.create(".mt-list", { type: "lines" });
 
-    const startListTL = isMobile ? "20% 30%" : "50% 30%";
+    const startListTL = isMobile ? "-20% 30%" : "20% 30%";
     const endListTL = isMobile ? "bottom bottom" : "bottom 80%";
     gsap
       .timeline({
@@ -19,7 +19,6 @@ const Cocktails = () => {
           trigger: ".list",
           start: startListTL,
           end: endListTL,
-          // markers: true,
         },
       })
       .from(".popular h2, .loved h2", { opacity: 0 })
@@ -32,7 +31,7 @@ const Cocktails = () => {
           stagger: 0.05,
           ease: "expo.out",
         },
-        1
+        0.5
       ) // Start at the same time
       .from(
         mtSplitText.lines,
@@ -43,7 +42,7 @@ const Cocktails = () => {
           stagger: 0.05,
           ease: "expo.out",
         },
-        1
+        0.5
       ); // Start at the same time
 
     const parallaxTimeline = gsap.timeline({
