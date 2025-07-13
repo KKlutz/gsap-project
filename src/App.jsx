@@ -4,6 +4,7 @@ import Example from "./components/example";
 import Hero from "./components/Hero";
 import Cocktails from "./components/Cocktails";
 import About from "./components/About";
+import Art from "./components/Art";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -14,6 +15,7 @@ const App = () => {
       <Hero />
       <Cocktails />
       <About />
+      <Art />
       <Example />
       <div className="flex-center h-screen">
         <h1 className="text-3xl font-mono font-normal">GSAP App</h1>
