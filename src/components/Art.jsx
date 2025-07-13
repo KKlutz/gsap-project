@@ -8,7 +8,7 @@ const Art = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useGSAP(() => {
-    const startTL = isMobile ? "10% 10%" : "top top";
+    const startTL = isMobile ? "top 10%" : "top top";
 
     const maskTimeline = gsap.timeline({
       scrollTrigger: {
@@ -31,7 +31,7 @@ const Art = () => {
       <div className="container mx-auto">
         <h2 className="fade-out">The ART</h2>
         <div className="content">
-          <ul className="space-y-4 fade-out">
+          <ul className="fade-out">
             {goodLists.map((good, index) => (
               <li key={index} className="flex items-center gap-2">
                 <img src="/images/check.png" alt="check-icon" />
@@ -47,7 +47,7 @@ const Art = () => {
             />
           </div>
 
-          <ul className="space-y-4 fade-out">
+          <ul className="fade-out">
             {featureLists.map((feature, index) => (
               <li key={index} className="flex items-center justify-start gap-2">
                 <img src="/images/check.png" alt="check-icon" />
