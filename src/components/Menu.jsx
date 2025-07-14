@@ -1,13 +1,43 @@
 import { useRef, useState } from "react";
 import { sliderLists } from "../constants";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const recipeRef = useRef();
+  const directionRef = useRef(0); // 1 = right, -1 = left
+
+  // animation text
+  useGSAP(() => {
+    const menuTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#menu",
+        start: "45% center",
+        end: "bottom bottom",
+        markers: true,
+      },
+    });
+
+    menuTimeline
+      .fromTo("#title", { opacity: 0 }, { opacity: 1, duration: 1 })
+      .fromTo(".details h2", { opacity: 0 }, { opacity: 1, ease: "power1.inOut" }, "-=0.85")
+      .fromTo(".details p", { opacity: 0 }, { opacity: 1, ease: "power1.inOut" }, "-=0.85");
+  }, [currentIndex]);
+
+  // animation slider image
+  useGSAP(() => {
+    gsap.fromTo(
+      ".cocktail img",
+      { opacity: 0, xPercent: 100 * -directionRef.current },
+      { opacity: 1, xPercent: 0, duration: 0.5, ease: "power2.out" }
+    );
+  }, [currentIndex]);
+
   const lengthCocktail = sliderLists.length;
 
-  const switchCocktail = (index) => {
+  const switchCocktail = (index, direction) => {
     const newIndex = (index + lengthCocktail) % lengthCocktail;
+    directionRef.current = direction;
     setCurrentIndex(newIndex);
   };
 
@@ -48,10 +78,10 @@ const Menu = () => {
 
       <div className="content">
         <div className="arrows">
-          <button className="text-left" onClick={() => switchCocktail(currentIndex - 1)}>
+          <button className="text-left" onClick={() => switchCocktail(currentIndex - 1, -1)}>
             <img src="/images/left-arrow.png" alt="left-arrow" />
           </button>
-          <button className="text-left" onClick={() => switchCocktail(currentIndex + 1)}>
+          <button className="text-left" onClick={() => switchCocktail(currentIndex + 1, 1)}>
             <img src="/images/right-arrow.png" alt="right-arrow" />
           </button>
         </div>
@@ -65,7 +95,7 @@ const Menu = () => {
         </div>
 
         <div className="recipe">
-          <div className="info" ref={recipeRef}>
+          <div className="info">
             <p>Recipe for:</p>
             <p id="title">{currentCocktail.name}</p>
           </div>
