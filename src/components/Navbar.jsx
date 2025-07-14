@@ -6,24 +6,24 @@ import { navLinks } from "../constants/index.js";
 
 const Navbar = () => {
   useGSAP(() => {
-    const nav_tl = gsap.timeline({
+    const navTimeline = gsap.timeline({
       scrollTrigger: {
-        trigger: "nav",
+        trigger: ".navlinks",
         start: "bottom top",
         end: "bottom",
         scrub: true,
       },
     });
 
-    nav_tl.fromTo(
-      "nav",
+    navTimeline.fromTo(
+      ".navlinks",
       { backgroundColor: "transparent" },
       { backgroundColor: "#00000066", backdropFilter: "blur(5px)", duration: 1 }
     );
   }, []);
 
   return (
-    <nav>
+    <nav className="navlinks">
       <div>
         <a href="#home" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="logo" />
