@@ -19,7 +19,7 @@ const About = () => {
         duration: 1,
         yPercent: 100,
         ease: "expo.out",
-        stagger: 0.04,
+        stagger: 0.02,
       })
       .from(
         ".top-grid div, .bottom-grid div",
