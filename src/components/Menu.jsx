@@ -14,7 +14,6 @@ const Menu = () => {
         trigger: "#menu",
         start: "45% center",
         end: "bottom bottom",
-        markers: true,
       },
     });
 
